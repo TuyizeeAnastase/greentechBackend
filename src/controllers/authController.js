@@ -1,33 +1,58 @@
-import User from '../models/userModel';
+import Admin from '../models/adminModel';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+import {promisify} from 'util';
 
+const signinToken=id=>{
+  return jwt.sign({id},'jsonWebToken_Password_Webtoken_Secret',{
+      expiresIn:'90d'
+});
+};
 
 export const signUp=async(req,res)=>{
-  console.log(req.body);
   try{
-    const newAdmin=await User.create({
+    const newAdmin=await Admin.create({
       name:req.body.name,
       email:req.body.email,
       password:req.body.password,
       passwordConfirm:req.body.passwordConfirm
     });
-    const token=signInToken(newAdmin._id);
+    const token=signinToken(newAdmin._id);
 
     res.status(201).json({
       status:'success',
       token,
       data:{
-        user:newUser
+        admin:newAdmin
       }
     })
   }
   catch(err){
     res.status(404).json({
       status:'fail',
-      message:err
+      message:`Unable to add admin:${err}`
     })
   }
 }
 export const login=async(req,res)=>{
-    res.send('login')
+  const {email,password}=req.body;
+
+  if(!email || !password){
+     return res.status(400).send({message:"Please input password or email"});
+  }
+   const admin=await Admin.findOne({email}).select('+password');          
+ 
+   if(!admin || !(await admin.correctPassword(password,admin.password))){
+       return res.status(400).send({message:"Password is invalid!"});
+       };
+ 
+ 
+//sending token
+const token=signinToken(admin._id);
+res.status(201).json({
+ status:'success',
+ message:'The email and password valid,Logged In',
+ token,
+})
 }
 

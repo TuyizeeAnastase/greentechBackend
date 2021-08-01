@@ -1,9 +1,12 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
 import validator from 'validator';
 
 const userSchema=new mongoose.Schema({
     name:{
+        type:String,
+        required:[true,'Please input adminname']
+    },
+    username:{
         type:String,
         required:[true,'Please input username']
     },
@@ -15,38 +18,20 @@ const userSchema=new mongoose.Schema({
         validate:[validator.isEmail,'Please provide valid emal']
     },
     photo:String,
-    password:{
+    phone:{
         type:String,
-        required:[true,'Please provide a password'],
-        minlength:8,
-        select:false
+        required:[true,'Please provide an phone number'],
     },
-    passwordConfirm:{
+    serialNumber:{
         type:String,
-        select:false,
-        required:[true,'Please confirm password'],
-        validate: {
-            validator:function(el) {
-                return el===this.password;
-            },
-            message:'Password are not the same'
-        }
-    }
+        required:[true,'Please provide an serial number'],
+    },
+    adress:{
+        type:String,
+        required:[true,'Please provide an phone number'],
+    },
 });
 
-userSchema.pre('save',function(next){
-    if(!this.isModified('password')){
-        return next();
-    }
-    this.password=bcrypt.hashSync(this.password,10);
-    this.passwordConfirm=undefined;
-    next();
-});
-
-userSchema.methods.correctPassword=async function(candidateP,userP){
-    return await bcrypt.compareSync(candidateP,userP);
-};
-
-const User=mongoose.model('User',userSchema);
+const User=mongoose.model('user',userSchema);
 
 export default User;
