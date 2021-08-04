@@ -1,7 +1,7 @@
 import express from 'express';
-import adminRouter from './routers/adminRoutes';
-import productRouter from './routers/productRouters';
-import userRouter from './routers/useRoutes';
+import adminRouter from './routers/adminRoutes.js';
+import productRouter from './routers/productRouters.js';
+import userRouter from './routers/useRoutes.js';
 import { MongoClient } from 'mongodb';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';

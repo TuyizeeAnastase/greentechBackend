@@ -1,4 +1,4 @@
-import Admin from '../models/adminModel';
+import Admin from '../models/adminModel.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import {promisify} from 'util';
