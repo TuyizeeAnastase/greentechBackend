@@ -26,30 +26,30 @@ app.use(function(req, res, next) {
 
 const connectionString='mongodb+srv://greentech:international@cluster0.9mata.mongodb.net/greentech?retryWrites=true&w=majority'
 
-// MongoClient.connect(connectionString, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-// })
-// .then(()=>{
-//   console.log('database connected remotely')
-// })
-// .catch(err=>{
-//   console.log(err)
-// })
-
-mongoose.connect('mongodb://127.0.0.1:27017/greentech',
-{
-    useNewUrlParser:true,
-    useFindAndModify:false,
-    useUnifiedTopology:true
+MongoClient.connect(connectionString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
 })
 .then(()=>{
-    
-    console.log('database connected locally')
+  console.log('database connected remotely')
 })
 .catch(err=>{
-    console.log(err)
+  console.log(err)
 })
+
+// mongoose.connect('mongodb://127.0.0.1:27017/greentech',
+// {
+//     useNewUrlParser:true,
+//     useFindAndModify:false,
+//     useUnifiedTopology:true
+// })
+// .then(()=>{
+    
+//     console.log('database connected locally')
+// })
+// .catch(err=>{
+//     console.log(err)
+// })
 
 app.use('/',welcome);
 app.use('/api/v1/admin',adminRouter);
