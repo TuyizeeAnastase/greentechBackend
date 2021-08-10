@@ -24,9 +24,9 @@ app.use(function(req, res, next) {
 
 //const connectionString='mongodb://greentech:international@cluster0-shard-00-00.9mata.mongodb.net:27017,cluster0-shard-00-01.9mata.mongodb.net:27017,cluster0-shard-00-02.9mata.mongodb.net:27017/greentech?ssl=true&replicaSet=atlas-k2wb23-shard-0&authSource=admin&retryWrites=true&w=majority'
 
-const connectionString='mongodb+srv://greentech:international@cluster0.9mata.mongodb.net/greentech?retryWrites=true&w=majority'
-
-MongoClient.connect(connectionString, {
+const connectionString='mongodb+srv://greentech:international@cluster0.9mata.mongodb.net/greentech?retryWrites=true&w=majority&ssl=true'
+const string='mongodb://greentech:international@cluster0-shard-00-00.9mata.mongodb.net:27017,cluster0-shard-00-01.9mata.mongodb.net:27017,cluster0-shard-00-02.9mata.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-k2wb23-shard-0&authSource=admin&retryWrites=true&w=majority'
+mongoose.connect(string, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
