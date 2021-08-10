@@ -1,4 +1,4 @@
-import Subscribers from '../models/subscribers';
+import Subscribers from '../models/subscribers.js';
 
 export const addSub=async (req,res)=>{
     try{
