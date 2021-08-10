@@ -10,7 +10,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 
 const app=express();
-const PORT=5000;
+const port=process.env.PORT || 5000
 
 app.use(bodyParser.json());
 
@@ -66,6 +66,6 @@ app.use('*', function (req, res) {
 
 //app.use('/',welcome)
 
-app.listen(PORT,()=>{
-  console.log(`App Listening to ${PORT}`)
+app.listen(port,()=>{
+  console.log(`App Listening to ${port}`)
 })
