@@ -2,10 +2,12 @@ import express from 'express';
 import adminRouter from './routers/adminRoutes.js';
 import productRouter from './routers/productRouters.js';
 import userRouter from './routers/useRoutes.js';
+import subscribers from './routers/subscribers.js';
+import message from './routers/message';
+import  welcome  from './routers/welcome';
 import { MongoClient } from 'mongodb';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-
 
 const app=express();
 const PORT=5000;
@@ -49,20 +51,20 @@ mongoose.connect('mongodb://127.0.0.1:27017/greentech',
     console.log(err)
 })
 
-
+app.use('/',welcome);
 app.use('/api/v1/admin',adminRouter);
 app.use('/api/v1/users',userRouter);
 app.use('/api/v1/products',productRouter);
+app.use('/api/v1/subscribers',subscribers);
+app.use('/api/v1/message',message);
+
 
 app.use('*', function (req, res) { 
   res.status(404).send('Page Not Found');
 });
 
 
-app.get('/',(req,res)=>{
-   res.send('Welcome to GreenTech Website')
-})
-
+//app.use('/',welcome)
 
 app.listen(PORT,()=>{
   console.log(`App Listening to ${PORT}`)
