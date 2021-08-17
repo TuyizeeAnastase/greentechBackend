@@ -10,6 +10,7 @@ export const createUser=async(req,res)=>{
       phone:req.body.phone,
       serialNumber:req.body.serialNumber,
       adress:req.body.adress,
+      amount:req.body.amount,
       email:req.body.email,
     });
     res.status(201).json({

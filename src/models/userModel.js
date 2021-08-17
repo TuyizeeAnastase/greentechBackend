@@ -26,6 +26,10 @@ const userSchema=new mongoose.Schema({
         type:String,
         required:[true,'Please provide an serial number'],
     },
+    amount:{
+        type:String,
+        required:[true,'Please input amount']
+    },
     adress:{
         type:String,
         required:[true,'Please provide an phone number'],
