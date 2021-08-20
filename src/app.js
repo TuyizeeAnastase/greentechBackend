@@ -1,16 +1,20 @@
 import express from 'express';
-import adminRouter from './routers/adminRoutes.js';
+// import adminRouter from './routers/adminRoutes.js';
 import productRouter from './routers/productRouters.js';
 import userRouter from './routers/useRoutes.js';
 import subscribers from './routers/subscribers.js';
 import message from './routers/message.js';
 import  welcome  from './routers/welcome.js';
+import auth from './routers/authRoutes.js'
 import { MongoClient } from 'mongodb';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 
+
+
 const app=express();
 const port=process.env.PORT || 5000
+
 
 app.use(bodyParser.json());
 
@@ -34,7 +38,8 @@ mongoose.connect(string, {
   console.log('database connected remotely')
 })
 .catch(err=>{
-  console.log(err)
+  console.log("connection error",err)
+  process.exit()
 })
 
 // mongoose.connect('mongodb://127.0.0.1:27017/greentech',
@@ -52,11 +57,12 @@ mongoose.connect(string, {
 // })
 
 app.use('/',welcome);
-app.use('/api/v1/admin',adminRouter);
+// app.use('/api/v1/admin',adminRouter);
 app.use('/api/v1/users',userRouter);
 app.use('/api/v1/products',productRouter);
 app.use('/api/v1/subscribers',subscribers);
 app.use('/api/v1/message',message);
+app.use('/api/v1/auth',auth);
 
 
 app.use('*', function (req, res) { 
@@ -69,3 +75,4 @@ app.use('*', function (req, res) {
 app.listen(port,()=>{
   console.log(`App Listening to ${port}`)
 })
+
