@@ -1,7 +1,7 @@
 import express from 'express';
 // import adminRouter from './routers/adminRoutes.js';
 import productRouter from './routers/productRouters.js';
-import userRouter from './routers/clientRoutes.js';
+import clientRouter from './routers/clientRoutes.js';
 import subscribers from './routers/subscribers.js';
 import message from './routers/message.js';
 import  welcome  from './routers/welcome.js';
@@ -58,7 +58,7 @@ mongoose.connect(string, {
 
 app.use('/',welcome);
 // app.use('/api/v1/admin',adminRouter);
-app.use('/api/v1/users',userRouter);
+app.use('/api/v1/users',clientRouter);
 app.use('/api/v1/products',productRouter);
 app.use('/api/v1/subscribers',subscribers);
 app.use('/api/v1/message',message);

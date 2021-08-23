@@ -6,7 +6,7 @@ export const createClient=async(req,res)=>{
     const newClient=await Client
     .create({
       name:req.body.name,
-      Clientname:req.body.Clientname,
+      username:req.body.username,
       phone:req.body.phone,
       serialNumber:req.body.serialNumber,
       adress:req.body.adress,
