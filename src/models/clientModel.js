@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import validator from 'validator';
 
-const userSchema=new mongoose.Schema({
+const clientSchema=new mongoose.Schema({
     name:{
         type:String,
         required:[true,'Please input adminname']
@@ -36,6 +36,6 @@ const userSchema=new mongoose.Schema({
     },
 });
 
-const User=mongoose.model('user',userSchema);
+const Client=mongoose.model('user',clientSchema);
 
-export default User;
+export default Client;

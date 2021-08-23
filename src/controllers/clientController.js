@@ -1,12 +1,12 @@
-import User from '../models/userModel.js';
+import Client from '../models/ClientModel.js';
 
 
-export const createUser=async(req,res)=>{
+export const createClient=async(req,res)=>{
   try{
-    const newuser=await User
+    const newClient=await Client
     .create({
       name:req.body.name,
-      username:req.body.username,
+      Clientname:req.body.Clientname,
       phone:req.body.phone,
       serialNumber:req.body.serialNumber,
       adress:req.body.adress,
@@ -16,27 +16,27 @@ export const createUser=async(req,res)=>{
     res.status(201).json({
       status:'success',
       data:{
-        user:newuser
+        Client:newClient
       }
     })
   }
   catch(err){
     res.status(404).json({
       status:'fail',
-      message:`Unable to add user:${err}`
+      message:`Unable to add Client:${err}`
     })
   }
 }
 
-export const getAllUsers=async(req,res)=>{
+export const getAllClients=async(req,res)=>{
     try{
-        const users=await User.find();
+        const Clients=await Client.find();
 
         res.status(200).json({
             status:'succcess',
-            results:users.length,
+            results:Clients.length,
             data:{
-               users
+               Clients
             }
         });
     }
@@ -48,34 +48,34 @@ export const getAllUsers=async(req,res)=>{
     }
 }
 
-export const getUser=async (req,res)=>{
+export const getClient=async (req,res)=>{
     try{
-        const user=await User.findById(req.params.id);
+        const Client=await Client.findById(req.params.id);
           res.status(200).json({
               status:'success',
               data:{
-                  user:user,
+                  Client:Client,
               }
           })
       }
       catch(err){
           res.status(404).json({
               status:'fail',
-              message:'Invalid id of an user'
+              message:'Invalid id of an Client'
           })
       }
 }
 
-export const updateuser=async(req,res)=>{
+export const updateClient=async(req,res)=>{
     try{
-      const user=await User.findByIdAndUpdate(req.params.id,req.body,{
+      const Client=await Client.findByIdAndUpdate(req.params.id,req.body,{
           new:true,
           runValidators:true
       });
         res.status(200).json({
             status:'success',
             data:{
-                user:user,
+                Client:Client,
             }
         })
     }
@@ -86,9 +86,9 @@ export const updateuser=async(req,res)=>{
         })
     } 
 }
-export const deleteuser=async (req,res)=>{
+export const deleteClient=async (req,res)=>{
     try{
-        const user=await User.findByIdAndDelete(req.params.id);
+        const Client=await Client.findByIdAndDelete(req.params.id);
           res.status(204).json({
               status:'success',
               data:null,

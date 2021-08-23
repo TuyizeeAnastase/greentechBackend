@@ -1,7 +1,7 @@
 import express from 'express';
 // import adminRouter from './routers/adminRoutes.js';
 import productRouter from './routers/productRouters.js';
-import userRouter from './routers/useRoutes.js';
+import userRouter from './routers/clientRoutes.js';
 import subscribers from './routers/subscribers.js';
 import message from './routers/message.js';
 import  welcome  from './routers/welcome.js';
