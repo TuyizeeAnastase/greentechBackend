@@ -1,4 +1,4 @@
-import Client from '../models/ClientModel.js';
+import Client from '../models/clientModel.js';
 
 
 export const createClient=async(req,res)=>{
