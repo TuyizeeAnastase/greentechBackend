@@ -6,7 +6,7 @@ const router=express.Router();
 
 router
   .route('/')
-  .get(protect,getProducts)
+  .get(getProducts)
 
 router
   .route('/new')
