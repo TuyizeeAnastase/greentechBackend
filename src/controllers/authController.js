@@ -46,8 +46,10 @@ export const login = async (req, res) => {
   //sending token
   const token = signinToken(user._id);
   const freshUser=user.name;
+  const role=user.role;
   res.status(201).json({
-    user:freshUser,
+    name:freshUser,
+    role:role,
     status: "success",
     message: "The email and password valid,Logged In",
     Token: token,

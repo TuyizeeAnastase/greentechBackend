@@ -1,11 +1,12 @@
 import express from 'express';
+import { protect } from '../middleware/loginprotect.js';
 import { createProduct, deleteProduct, getProduct, getProducts, updateProduct } from '../controllers/productController.js';
 
 const router=express.Router();
 
 router
   .route('/')
-  .get(getProducts)
+  .get(protect,getProducts)
 
 router
   .route('/new')
