@@ -4,12 +4,10 @@ import bcrypt from 'bcryptjs';
 
 const userSchema=new mongoose.Schema({
     name:{
-        type:String,
-        required:[true,'Please input username']
+        type:String
     },
     email:{
         type:String,
-        required:[true,'Please provide an email'],
         unique:true,
         lowercase:true,
         validate:[validator.isEmail,'Please provide valid emal']
@@ -17,18 +15,15 @@ const userSchema=new mongoose.Schema({
     photo:String,
     role:{
       type:String,
-      required:[true,'Please input Role']
   },
     password:{
         type:String,
-        required:[true,'Please provide a password'],
         minlength:8,
         select:false
     },
     passwordConfirm:{
         type:String,
         select:false,
-        required:[true,'Please confirm password'],
         validate: {
             validator:function(el) {
                 return el===this.password;

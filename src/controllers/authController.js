@@ -18,6 +18,9 @@ export const signUp = async (req, res) => {
       password: req.body.password,
       passwordConfirm: req.body.passwordConfirm,
     });
+    if ( !name || !email || !role || !password ||passwordConfirm) {
+      return res.status(400).send({ message: "Please input all fields" });
+    }
     const token = signinToken(newUser._id);
     res.status(201).json({
       status: "success",
@@ -29,7 +32,7 @@ export const signUp = async (req, res) => {
   } catch (err) {
     res.status(404).json({
       status: "fail",
-      message: err,
+      message: err.message,
     });
   }
 };
@@ -47,9 +50,11 @@ export const login = async (req, res) => {
   const token = signinToken(user._id);
   const freshUser=user.name;
   const role=user.role;
+  const userEmail=user.email;
   res.status(201).json({
     name:freshUser,
     role:role,
+    email:userEmail,
     status: "success",
     message: "The email and password valid,Logged In",
     Token: token,
